@@ -3,6 +3,18 @@ import createHistory from "history/createBrowserHistory"
 
 export const history = createHistory()
 
+export const windowSize = new Value({
+	height: window.innerHeight,
+	width: window.innerWidth,
+})
+
+window.addEventListener("resize", event => {
+	windowSize.set({
+		height: window.innerHeight,
+		width: window.innerWidth,
+	})
+})
+
 export const mouse = new Value({ x: 0, y: 0 })
 
 window.addEventListener("mousemove", event => {

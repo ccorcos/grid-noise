@@ -17,12 +17,12 @@ export default class SquareGrid extends Component<{}> {
 		const width = majorScale.length
 		const offset = 2
 		return (
-			<div style={{ display: "flex", flexDirection: "column" }}>
+			<div style={{ display: "flex", flexDirection: "column", height: "100%" }}>
 				{Array(height)
 					.fill(undefined)
 					.map((_, h) => {
 						return (
-							<div key={h} style={{ display: "flex" }}>
+							<div key={h} style={{ display: "flex", flex: 1 }}>
 								{Array(width)
 									.fill(undefined)
 									.map((_, w) => {
@@ -31,9 +31,8 @@ export default class SquareGrid extends Component<{}> {
 											<Note
 												key={w}
 												style={{
+													flex: 1,
 													margin: 0,
-													height: 50,
-													width: 50,
 													border: "1px solid black",
 													backgroundColor: `hsl(${(midi % 12) /
 														12 *

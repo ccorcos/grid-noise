@@ -16,6 +16,10 @@ css.global("a", {
 	textDecoration: "none",
 })
 
+document.body.addEventListener("touchmove", event => {
+	event.preventDefault()
+})
+
 const root = document.createElement("div")
 document.body.appendChild(root)
 
