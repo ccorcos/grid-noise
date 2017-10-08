@@ -12,4 +12,16 @@ window.addEventListener("mousemove", event => {
 	})
 })
 
+export const mousedown = new Value(false)
+
+window.addEventListener("mousedown", event => {
+	mousedown.set(true)
+})
+window.addEventListener("mouseup", event => {
+	mousedown.set(false)
+})
+window.addEventListener("mouseleave", event => {
+	mousedown.set(false)
+})
+
 export const notes = new Value(new Set<number>())

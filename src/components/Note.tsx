@@ -3,6 +3,7 @@ import * as Tone from "tone"
 import { Value } from "reactive-magic"
 import Component from "reactive-magic/component"
 import * as midi from "midiutils"
+import * as world from "../world"
 
 const freeverb = new Tone.Freeverb({
 	roomSize: 0.5,
@@ -28,17 +29,34 @@ interface NoteProps {
 }
 
 export default class Note extends Component<NoteProps> {
-	down = new Value(false)
+	private down = new Value(false)
 
 	view() {
 		return (
 			<button
 				onMouseDown={this.handleMouseDown}
+				onMouseMove={this.handleMouseMove}
 				onMouseUp={this.handleMouseUp}
 				onMouseLeave={this.handleMouseLeave}
-				style={this.props.style}
+				style={this.getStyle()}
 			/>
 		)
+	}
+
+	private getStyle() {
+		return {
+			outline: "none",
+			border: "none",
+			borderRadius: 3,
+			opacity: this.down.get() ? 0.9 : 0.3,
+			...this.props.style,
+		}
+	}
+
+	private handleMouseMove = () => {
+		if (world.mousedown.get() && !this.down.get()) {
+			this.triggerAttack()
+		}
 	}
 
 	private handleMouseDown = () => {

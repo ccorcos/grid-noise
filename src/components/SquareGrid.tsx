@@ -6,6 +6,7 @@ export default class SquareGrid extends Component<{}> {
 	view() {
 		const height = 10
 		const width = 10
+		const offset = 10
 		return (
 			<div style={{}}>
 				{Array(height)
@@ -24,11 +25,8 @@ export default class SquareGrid extends Component<{}> {
 													width: 100,
 													margin: 5,
 													backgroundColor: "blue",
-													outline: "none",
-													border: "none",
-													borderRadius: 3,
 												}}
-												midi={w + h * 10}
+												midi={w + h * offset}
 											/>
 										)
 									})}
