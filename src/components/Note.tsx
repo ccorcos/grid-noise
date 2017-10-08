@@ -2,6 +2,7 @@ import * as React from "react"
 import * as Tone from "tone"
 import { Value } from "reactive-magic"
 import Component from "reactive-magic/component"
+import * as midi from "midiutils"
 
 const freeverb = new Tone.Freeverb({
 	roomSize: 0.5,
@@ -21,22 +22,21 @@ var synth = new Tone.PolySynth({
 	voice: Tone.MonoSynth,
 }).connect(filter)
 
-interface NoteProps {}
+interface NoteProps {
+	midi: number
+	style: React.CSSProperties
+}
 
 export default class Note extends Component<NoteProps> {
 	down = new Value(false)
 
-	view({ render }) {
+	view() {
 		return (
-			<div
+			<button
 				onMouseDown={this.handleMouseDown}
 				onMouseUp={this.handleMouseUp}
 				onMouseLeave={this.handleMouseLeave}
-				style={{
-					height: 100,
-					width: 100,
-					backgroundColor: "blue",
-				}}
+				style={this.props.style}
 			/>
 		)
 	}
@@ -55,11 +55,11 @@ export default class Note extends Component<NoteProps> {
 
 	triggerAttack() {
 		this.down.set(true)
-		synth.triggerAttack(400)
+		synth.triggerAttack(midi.noteNumberToFrequency(this.props.midi))
 	}
 
 	triggerRelease() {
 		this.down.set(false)
-		synth.triggerRelease(400)
+		synth.triggerRelease(midi.noteNumberToFrequency(this.props.midi))
 	}
 }
