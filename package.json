@@ -20,6 +20,7 @@
 		"react-dom": "^16.0.0",
 		"react-router-dom": "^4.2.2",
 		"reactive-magic": "^2.1.0",
+		"startaudiocontext": "^1.2.1",
 		"tone": "^0.11.11"
 	},
 	"devDependencies": {

@@ -4,6 +4,8 @@ import { Value } from "reactive-magic"
 import Component from "reactive-magic/component"
 import * as midi from "midiutils"
 import * as world from "../world"
+import * as StartAudioContext from "startaudiocontext"
+StartAudioContext(Tone.context, "body")
 
 const freeverb = new Tone.Freeverb({
 	roomSize: 0.5,
@@ -34,6 +36,9 @@ export default class Note extends Component<NoteProps> {
 	view() {
 		return (
 			<button
+				onTouchStart={this.handleTouchStart}
+				onTouchEnd={this.handleTouchEnd}
+				onTouchCancel={this.handleTouchEnd}
 				onMouseDown={this.handleMouseDown}
 				onMouseMove={this.handleMouseMove}
 				onMouseUp={this.handleMouseUp}
@@ -47,10 +52,23 @@ export default class Note extends Component<NoteProps> {
 		return {
 			outline: "none",
 			border: "none",
-			borderRadius: 3,
 			opacity: this.down.get() ? 0.9 : 0.3,
 			...this.props.style,
 		}
+	}
+
+	private handleTouchStart = () => {
+		this.triggerAttack()
+	}
+
+	// private handleTouchMove = () => {
+	// 	if (world.touchdown.get() && !this.down.get()) {
+	// 		this.triggerAttack()
+	// 	}
+	// }
+
+	private handleTouchEnd = () => {
+		this.triggerRelease()
 	}
 
 	private handleMouseMove = () => {

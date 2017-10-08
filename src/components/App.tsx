@@ -6,7 +6,6 @@ export default class App extends Component<{}> {
 	view() {
 		return (
 			<div>
-				<h1>Hello World</h1>
 				<SquareGrid />
 			</div>
 		)
