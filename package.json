@@ -18,7 +18,8 @@
 		"react": "^16.0.0",
 		"react-dom": "^16.0.0",
 		"react-router-dom": "^4.2.2",
-		"reactive-magic": "^2.1.0"
+		"reactive-magic": "^2.1.0",
+		"tone": "^0.11.11"
 	},
 	"devDependencies": {
 		"@types/history": "^4.6.0",

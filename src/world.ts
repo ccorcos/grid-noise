@@ -11,3 +11,5 @@ window.addEventListener("mousemove", event => {
 		y: event.clientY,
 	})
 })
+
+export const notes = new Value(new Set<number>())
