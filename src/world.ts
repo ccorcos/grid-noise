@@ -1,7 +1,4 @@
 import { Value } from "reactive-magic"
-import createHistory from "history/createBrowserHistory"
-
-export const history = createHistory()
 
 export const windowSize = new Value({
 	height: window.innerHeight,
