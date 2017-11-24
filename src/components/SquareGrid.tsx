@@ -2,20 +2,20 @@ import * as React from "react"
 import Component from "reactive-magic/component"
 import Note from "./Note"
 
-const majorScale = [0, 2, 4, 5, 7, 9, 11]
+const scale = [0, 2, 4, 5, 7, 9, 11]
+const rowOffset = 2
 
 export default class SquareGrid extends Component<{}> {
 	private nth(n: number) {
 		const base = 30
-		const offset = Math.floor(n / majorScale.length) * 12
-		const mode = n % majorScale.length
-		return base + offset + majorScale[mode]
+		const offset = Math.floor(n / scale.length) * 12
+		const mode = n % scale.length
+		return base + offset + scale[mode]
 	}
 
 	view() {
 		const height = 10
-		const width = majorScale.length
-		const offset = 2
+		const width = scale.length
 		return (
 			<div style={{ display: "flex", flexDirection: "column", height: "100%" }}>
 				{Array(height)
@@ -26,7 +26,7 @@ export default class SquareGrid extends Component<{}> {
 								{Array(width)
 									.fill(undefined)
 									.map((_, w) => {
-										const midi = this.nth(h * offset + w)
+										const midi = this.nth(h * rowOffset + w)
 										return (
 											<Note
 												key={w}
