@@ -1,4 +1,4 @@
-# Grid Noise
+# Grid Noise [[Demo](https://ccorcos.github.io/grid-noise/)]
 
 I was inspired by the grid layout on top of the [Hyve synth](https://www.youtube.com/watch?v=qMDURsBLIOY) and thought it would be fun to experiment with different types of grid note layouts.
 
